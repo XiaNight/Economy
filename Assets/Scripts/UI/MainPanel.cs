@@ -21,33 +21,32 @@ namespace Economy.UI
 		public event UnityAction<Data> onDataLoaded;
 		public event UnityAction<Data> onDataChanged;
 
+		public const string DATA_PATH = "userdata.json";
+
+		private void Start()
+		{
+			LoadData();
+		}
+
 		public void DataChanged()
 		{
+			SaveAccount();
 			onDataChanged?.Invoke(data);
 		}
 
 		public void LoadData()
 		{
-			loadAccountPanel.OpenNew((string value) =>
+			if (JSONManager.LoadData(DATA_PATH, out Data account))
 			{
-				if (JSONManager.LoadData(value, out Data account))
-				{
-					SetData(account);
-					loadAccountPanel.Close();
-					return 0;
-				}
-				else
-				{
-					textfieldAlert.OpenNew((string[] values) =>
-					{
-						Debug.Log("Closing");
-						loadAccountPanel.Close();
-						return 0;
-					}, title: "Account does not exist.");
-					Debug.Log("Account does not exist.");
-					return -1;
-				}
-			}, DataManager.ListAllFileInFolder(""));
+				SetData(account);
+				onDataLoaded?.Invoke(data);
+			}
+			else
+			{
+				data = new Data();
+				SaveAccount();
+				onDataLoaded?.Invoke(data);
+			}
 		}
 
 		public void SetData(Data account)
@@ -58,7 +57,7 @@ namespace Economy.UI
 
 		public void SaveAccount()
 		{
-			JSONManager.SaveData(data, data.name);
+			JSONManager.SaveData(data, DATA_PATH);
 		}
 
 		public void CreateData()

@@ -3124,7 +3124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Transaction Rule
+  m_Text: Timed Action
 --- !u!222 &587220214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5661,7 +5661,7 @@ GameObject:
   - component: {fileID: 997930995}
   - component: {fileID: 997930996}
   m_Layer: 5
-  m_Name: TransactionsRuleSection
+  m_Name: TimedActionSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5697,14 +5697,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 997930994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16387a0ac2dc6d54a9710b6549d9b560, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b62ca43dbb822d4f9ea48a4dccf8920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transactionContainer: {fileID: 644408376}
-  transactionEntryPrefab: {fileID: 8995501344348295185, guid: acfb4bd90545c1c4881af134e404c5e9, type: 3}
-  transactionForm: {fileID: 1654891787}
+  timedActionContainer: {fileID: 644408376}
+  timedActionEntryPrefab: {fileID: 8995501344348295185, guid: acfb4bd90545c1c4881af134e404c5e9, type: 3}
+  timedActionForm: {fileID: 0}
   addBtn: {fileID: 1463861381}
-  spawnedRuleEntries: []
+  spawnedEntries: []
 --- !u!1 &1018034907
 GameObject:
   m_ObjectHideFlags: 0
@@ -7002,7 +7002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 0, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1203684146
@@ -8123,7 +8123,7 @@ MonoBehaviour:
   doneBtn: {fileID: 1184244036}
   value:
     name: 
-    transactionRules: []
+    timedActions: []
     accounts: []
     receipts: []
   nameField: {fileID: 1998113080}
@@ -9490,7 +9490,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Transaction Rule
+  m_Text: Timed Action
 --- !u!222 &1637030986
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9510,7 +9510,7 @@ GameObject:
   - component: {fileID: 1654891786}
   - component: {fileID: 1654891787}
   m_Layer: 5
-  m_Name: TransactionRuleForm
+  m_Name: TimedActionForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9547,7 +9547,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1654891785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d54cc556dce81f4195686697c5aaa60, type: 3}
+  m_Script: {fileID: 11500000, guid: 077031333a61c6143bb4e53f25fdd2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   doneBtn: {fileID: 1861408228}
@@ -9661,7 +9661,7 @@ MonoBehaviour:
   loadAccountPanel: {fileID: 506573730}
   data:
     name: 
-    transactionRules: []
+    timedActions: []
     accounts: []
     receipts: []
 --- !u!1 &1762269054
@@ -10082,11 +10082,11 @@ RectTransform:
   m_Father: {fileID: 1743511828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
-  m_Pivot: {x: 0.5, y: 1}
+  m_SizeDelta: {x: 1080, y: 100}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1824229517
 MonoBehaviour:
   m_ObjectHideFlags: 0

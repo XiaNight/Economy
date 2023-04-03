@@ -9,9 +9,9 @@ namespace Economy
 	public class Data
 	{
 		public string name = "New Account";
-		public List<TransactionRule> transactionRules = new List<TransactionRule>();
+		public List<TimedAction> timedActions = new List<TimedAction>();
 		public List<Account> accounts = new List<Account>();
-		public List<TransactionRule.TransactionReceipt> receipts = new List<TransactionRule.TransactionReceipt>();
+		public List<TimedAction.TransactionReceipt> receipts = new List<TimedAction.TransactionReceipt>();
 
 		public Data(string name = "New Account")
 		{
@@ -24,16 +24,16 @@ namespace Economy
 			int whilebreaker = 0;
 			while (IsAllTransactionUpdated() == false)
 			{
-				TransactionRule rule = GetNextTransactionRule();
+				TimedAction rule = GetNextTransactionRule();
 				int amount = rule.Amount;
-				int remaining = rule.InitiateTransaction(this);
+				int remaining = rule.InitiateTimedAction(this);
 
 				switch (rule.type)
 				{
-					case TransactionRule.Type.Income:
+					case TimedAction.Type.Income:
 						DepositToAccount(0, remaining);
 						break;
-					case TransactionRule.Type.Expend:
+					case TimedAction.Type.Expend:
 						WithdrawWithAccount(0, amount, true);
 						break;
 				}
@@ -44,17 +44,17 @@ namespace Economy
 			}
 		}
 
-		public void AddReceipt(TransactionRule.TransactionReceipt receipt)
+		public void AddReceipt(TimedAction.TransactionReceipt receipt)
 		{
 			receipts.Add(receipt);
 		}
 
-		public TransactionRule GetNextTransactionRule()
+		public TimedAction GetNextTransactionRule()
 		{
 			if (IsAllTransactionUpdated()) return null;
-			TransactionRule mostDistancedRule = null;
+			TimedAction mostDistancedRule = null;
 			TimeSpan distance = TimeSpan.Zero;
-			foreach (TransactionRule rule in transactionRules)
+			foreach (TimedAction rule in timedActions)
 			{
 				if (!rule.IsUpdated(out TimeSpan span))
 				{
@@ -70,7 +70,7 @@ namespace Economy
 
 		public bool IsAllTransactionUpdated()
 		{
-			foreach (TransactionRule rule in transactionRules)
+			foreach (TimedAction rule in timedActions)
 			{
 				if (rule.IsUpdated(out _) == false) return false;
 			}
@@ -94,9 +94,9 @@ namespace Economy
 			string output = "";
 			string prefix = $"Name: {name}\n";
 			output += prefix;
-			for (int i = 0; i < transactionRules.Count; i++)
+			for (int i = 0; i < timedActions.Count; i++)
 			{
-				output += $"{{{transactionRules[i].Describe()}}}\n";
+				output += $"{{{timedActions[i].Describe()}}}\n";
 			}
 			return output;
 		}

@@ -7,21 +7,21 @@ using Economy;
 
 namespace Economy.UI
 {
-	public class TransactionRuleForm : Form<TransactionRule>
+	public class TimedActionForm : Form<TimedAction>
 	{
 		[SerializeField] private InputField nameText;
 		[SerializeField] private InputField amount;
 		[SerializeField] private Dropdown typeDropdown;
 		[SerializeField] private DateTimeField initialDate;
 
-		public override void SetValue(TransactionRule value)
+		public override void SetValue(TimedAction value)
 		{
 			base.SetValue(value);
 			nameText.text = value.name;
 			amount.text = value.amount.ToString();
 			typeDropdown.value = (int)value.type;
 			typeDropdown.ClearOptions();
-			typeDropdown.AddOptions(new List<string>(Enum.GetNames(typeof(TransactionRule.Type))));
+			typeDropdown.AddOptions(new List<string>(Enum.GetNames(typeof(TimedAction.Type))));
 			initialDate.SetValue(value.initialDate);
 		}
 
@@ -29,7 +29,7 @@ namespace Economy.UI
 		{
 			value.name = nameText.text;
 			value.amount = int.Parse(amount.text);
-			value.type = (TransactionRule.Type)typeDropdown.value;
+			value.type = (TimedAction.Type)typeDropdown.value;
 			value.initialDate = initialDate.GetDateTime();
 		}
 

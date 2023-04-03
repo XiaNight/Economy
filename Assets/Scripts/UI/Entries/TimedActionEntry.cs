@@ -7,14 +7,14 @@ using Economy;
 
 namespace Economy.UI
 {
-	public class TransactionEntry : EntryBase<TransactionRule>
+	public class TimedActionEntry : EntryBase<TimedAction>
 	{
 		[SerializeField] private Text nameText;
 		[SerializeField] private Text amount;
 		[SerializeField] private Text frequenct;
 		[SerializeField] private Text type;
 
-		public override void SetValue(TransactionRule value)
+		public override void SetValue(TimedAction value)
 		{
 			base.SetValue(value);
 			nameText.text = value.name;

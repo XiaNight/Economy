@@ -7,7 +7,7 @@ using Util;
 namespace Economy
 {
 	[Serializable]
-	public class TransactionRule : ISerializationCallbackReceiver
+	public class TimedAction : ISerializationCallbackReceiver
 	{
 		// Important Variables
 		public int amount;
@@ -19,20 +19,20 @@ namespace Economy
 		private DateTime lastUpdateDate;
 
 		public string name;
-		[SerializeField] private int counter; // how many transaction has been made.
+		[SerializeField] private int counter; // how many timed actions has been made.
 
-		public List<DistributionRule> distributionRules = new List<DistributionRule>(); // ���t�W�h
+		public List<DistributionRule> distributionRules = new List<DistributionRule>();
 		public Type type;
 
 		public int Amount { get => amount; }
 		public UpdateFrequency Frequency { get => frequency; }
 
-		public TransactionRule() : this(DateTime.Now, UpdateFrequency.Monthly, 0, Type.Income, "New Transaction")
+		public TimedAction() : this(DateTime.Now, UpdateFrequency.Monthly, 0, Type.Income, "New Timed Action")
 		{
 
 		}
 
-		public TransactionRule(DateTime initialDate, UpdateFrequency frequency, int amount, Type type, string description = "")
+		public TimedAction(DateTime initialDate, UpdateFrequency frequency, int amount, Type type, string description = "")
 		{
 			DateTime localDate = DateTime.Now;
 
@@ -87,7 +87,7 @@ namespace Economy
 		/// </summary>
 		/// <param name="account"></param>
 		/// <returns>remaining of the transaction after distribution.</returns>
-		public int InitiateTransaction(Data account)
+		public int InitiateTimedAction(Data account)
 		{
 			if (IsUpdated(out _)) return 0;
 			int remaining = amount;
